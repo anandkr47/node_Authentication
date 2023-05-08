@@ -154,7 +154,7 @@ app.post('/forgot-password', async (req, res) => {
     from: 'computerengineeres4@gmail.com',
     to: email,
     subject: 'Password Reset',
-    text: `Please click on the following link to reset your password: http://localhost:3000/update-password?token=${token}`
+    text: `Please click on the following link to reset your password: https://node-authentication-2sau.onrender.com/update-password?token=${token}`
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
