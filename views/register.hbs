@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sign up form</title>
+	<link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <!-- load bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+	<style>
+		  body {
+            background-color: #F5F5F5;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            background-color: #F9F9F9;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        button[type="submit"] {
+            background-color: #008CBA;
+            color: #FFFFFF;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #006F8F;
+        }
+
+        li {
+            list-style: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        li a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 16px;
+        }
+
+        li a:hover {
+            color: #008CBA;
+        }
+
+        .login-register {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-register p {
+            margin-bottom: 10px;
+            color: #777;
+            font-size: 16px;
+        }
+
+        .login-register a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 16px;
+        }
+
+        .login-register a:hover {
+            color: #008CBA;
+        }
+
+        .social-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-buttons a {
+            text-decoration: none;
+            color: #FFFFFF;
+            margin-right: 10px;
+        }
+		.error {
+			color: red;
+			margin-bottom: 20px;
+		}
+        
+	</style>
+</head>
+<body>
+	<h1>Sign up form</h1>
+	<form action="/register" method="POST">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required>
+		<button type="submit">Submit</button>
+		<!-- Display error message, if any -->
+		{{#if error}}
+			<p class="error">{{error}}</p>
+		{{/if}}
+
+		<li class="login-register">
+			<p>Already have an account? <a href="/login">Login</a></p>
+		</li>
+		<li class="social-buttons">
+	 <p>Login or Register with:</p>
+        <a href="/auth/google" class="btn btn-danger"
+          ><span class="fa fa-google"></span> Sign Up with Google</a
+        >
+        <br />
+		</li>
+	</form>
+	
+</body>
+</html>
