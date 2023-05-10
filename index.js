@@ -149,7 +149,7 @@ app.post('/forgot-password', async (req, res) => {
     service: 'gmail',
     auth: {
       user: 'computerengineeres4@gmail.com',
-      pass: 'uieefhmpnfmzvxzn'
+      pass: process.env.APP_PASSWORD
     }
   });
 
@@ -166,7 +166,7 @@ app.post('/forgot-password', async (req, res) => {
      res.render("forgot-password", { message: "Error sending Email." });
     } else {
       console.log('Email sent: ' + info.response);
-       res.render("forgot-password", { message: "Email sent sucessfuly." });
+       res.render("forgot-password", { message: "Email sent successfully." });
     }
   });
 });
