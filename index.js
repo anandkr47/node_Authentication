@@ -132,22 +132,25 @@ app.get('/forgot-password', (req, res) => {
 app.post('/forgot-password', async (req, res) => {
   const email = req.body.email;
 
+  // Check if the email exists in the database
+  const user = await collection.findOne({ email });
+  if (!user) {
+    return res.status(400).send('Email not found');
+  }
+
   // Generate a random token for password reset
   const token = crypto.randomBytes(20).toString('hex');
 
   // Store the token in the database along with the user's email
-  await collection.updateOne({ email }, { resetToken: token });
+  await collection.updateOne({ email }, { $set: { resetToken: token } });
 
   // Send an email to the user containing a link to the password reset page
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    
-    // true for 465, false for other ports
     auth: {
       user: 'computerengineeres4@gmail.com',
       pass: 'uieefhmpnfmzvxzn'
     }
-
   });
 
   const mailOptions = {
@@ -167,6 +170,7 @@ app.post('/forgot-password', async (req, res) => {
     }
   });
 });
+
 
 // ...
 // Route to render the update password form
