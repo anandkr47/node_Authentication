@@ -135,7 +135,7 @@ app.post('/forgot-password', async (req, res) => {
   // Check if the email exists in the database
   const user = await collection.findOne({ email });
   if (!user) {
-    return res.status(400).send('Email not found');
+   return res.redirect('/forgot-password?message=Email%20not%20found');
   }
 
   // Generate a random token for password reset
@@ -163,10 +163,10 @@ app.post('/forgot-password', async (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      res.status(500).send('Error sending email');
+      res.redirect('/forgot-password?message=Error%20sending%20email');
     } else {
       console.log('Email sent: ' + info.response);
-      res.status(200).send('Email sent');
+       res.redirect('/forgot-password?message=Email%20sent');
     }
   });
 });
